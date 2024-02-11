@@ -1,7 +1,7 @@
-FROM public.ecr.aws/lambda/python:3.8
+FROM public.ecr.aws/lambda/python:3.12
 
-COPY requirements.txt ./
+COPY requirements.txt ${LAMBDA_TASK_ROOT}
 RUN pip3 install -r requirements.txt
-COPY myfunction.py ./
+COPY app.py ${LAMBDA_TASK_ROOT}
 
-CMD ["myfunction.lambda_handler"]
+CMD ["app.lambda_handler"]
